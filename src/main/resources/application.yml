@@ -21,6 +21,8 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        default_schema: ${DB_SCHEMA}
+        generate_statistics: ${SHOW_SQL}
 
   flyway:
     enabled: true
