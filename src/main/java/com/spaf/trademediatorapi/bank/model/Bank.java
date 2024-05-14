@@ -1,14 +1,16 @@
 package com.spaf.trademediatorapi.bank.model;
 
+import com.spaf.trademediatorapi.bank.dto.BankDTO;
 import com.spaf.trademediatorapi.core.model.BaseEntity;
-import jakarta.persistence.ElementCollection;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 
@@ -26,7 +28,14 @@ public class Bank extends BaseEntity {
     private String name;
 
     @ToString.Exclude
-    @ElementCollection( targetClass = String.class )
-    private Set<String> accounts = new HashSet<>();
+    @OneToMany( mappedBy = "bank", cascade = CascadeType.ALL, orphanRemoval = true )
+    private Set<Account> accounts = new LinkedHashSet<>();
+
+    public BankDTO toDto() {
+        return BankDTO.builder()
+                      .id( id )
+                      .name( name )
+                      .build();
+    }
 
 }

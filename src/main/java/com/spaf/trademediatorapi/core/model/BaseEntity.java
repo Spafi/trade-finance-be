@@ -26,7 +26,8 @@ public class BaseEntity {
     @GeneratedValue( strategy = GenerationType.AUTO )
     protected UUID id;
 
-    protected final LocalDateTime createdAt = LocalDateTime.now();
+    @Builder.Default
+    protected LocalDateTime createdAt = LocalDateTime.now();
 
     @Override
     public final boolean equals( Object o ) {

@@ -9,5 +9,4 @@ public class TradeMediatorApiApplication {
     public static void main( String[] args ) {
         SpringApplication.run( TradeMediatorApiApplication.class, args );
     }
-
 }

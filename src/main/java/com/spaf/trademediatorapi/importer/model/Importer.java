@@ -1,9 +1,9 @@
 package com.spaf.trademediatorapi.importer.model;
 
 import com.spaf.trademediatorapi.core.model.BaseEntity;
+import com.spaf.trademediatorapi.importer.dto.ImporterDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -22,11 +22,11 @@ public class Importer extends BaseEntity {
     @Column( nullable = false )
     private String name;
 
-    @Email
-    @Column
-    private String email;
-
-    @Column
-    private String phone;
+    public ImporterDTO toDto() {
+        return ImporterDTO.builder()
+                          .id( id )
+                          .name( name )
+                          .build();
+    }
 
 }

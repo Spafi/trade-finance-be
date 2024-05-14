@@ -15,23 +15,13 @@ spring:
     generate-ddl: true
     show-sql: ${SHOW_SQL:false}
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       naming:
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
     properties:
       hibernate:
         format_sql: true
-        default_schema: ${DB_SCHEMA}
         generate_statistics: ${SHOW_SQL}
-
-  flyway:
-    enabled: true
-    url: ${DB_URL}
-    user: ${DB_USER}
-    password: ${DB_PASSWORD}
-    schemas:
-      - ${DB_SCHEMA}
-    table: schema_history
 
 logging:
   level:
@@ -40,3 +30,6 @@ logging:
 
 server:
   port: ${APP_PORT:8080}
+
+app:
+  insertMockDataOnStartup: ${INSERT_MOCK_DATA}
